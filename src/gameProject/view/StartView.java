@@ -31,12 +31,12 @@ public class StartView {
 		
 		// 캐릭터 CRUD
 		Scanner sc = new Scanner(System.in);
-		
 		System.out.println("*********************************************");
 		System.out.println("유닛 변경사항을 확인하지 않고 스토리를 진행하시겠습니까? (Y / N)");
 		Controller.storySkipOption(sc.next());
 		
 		// 몬스터 늑대, 마왕 생성
+		// ("이름", hp, 이동속도, 방어력, 공격력)
 		AttackUnit monster1 = new AttackUnit("마왕", 500, 15, 10, 80);
 		AttackUnit monster2 = new AttackUnit("늑대", 90, 3, 1, 5);
 		
@@ -51,6 +51,7 @@ public class StartView {
 		Controller.attack(monster2);
 		
 		// 광물 캐기
+		// ("이름", "상태", 가격) 
 		System.out.println("*********************************************");
 		Material mat1 = new Material("철광석", "상", 5000);
 		Material mat2 = new Material("철광석", "상", 3000);

@@ -11,6 +11,7 @@ public class ProductionSkill {
 	// 만들어지는 아이템
 	private String pItem;
 	
+	
 	public ProductionSkill(String pSkill, Material pMaterial, String pItem) {
 		super();
 		this.pSkill = pSkill;

@@ -15,6 +15,7 @@ public class Controller {
 	public static HeroPartyModel heroParty = HeroPartyModel.getInstance();
 	public static InventoryModel inven = InventoryModel.getInstance();
 
+	// 영웅 파티에 캐릭터 넣기
 	public static void gameUnitInsert(Unit unit) {
 		if (unit != null) {
 			heroParty.gameUnitInsert(unit);
@@ -24,6 +25,7 @@ public class Controller {
 		}
 	}
 
+	// 파티 내에 캐릭터 검색
 	public static void gameUnitRead(String unitName) {
 		if (unitName != null) {
 			try {
@@ -38,6 +40,7 @@ public class Controller {
 		}
 	}
 
+	// 파티 내 캐릭터 이름으로 수정
 	public static void gameUnitUpdate(String unitName, String newName) {
 		if (unitName != null && newName != null) {
 			try {
@@ -52,7 +55,7 @@ public class Controller {
 		}
 	}
 
-
+	// 파티 내 캐릭터 제외
 	public static void gameUnitDelete(String unitName) {
 		if (unitName != null) {
 			try {
@@ -68,6 +71,7 @@ public class Controller {
 		}
 	}
 
+	// 인벤토리에 아이템 넣기
 	public static void gameItemInsert(Material material) {
 		if (material != null) {
 			inven.gameItemInsert(material);
@@ -77,6 +81,7 @@ public class Controller {
 		}
 	}
 
+	// 인벤토리에 있는 아이템 검색
 	public static void getMaterial(String materialName) {
 		try {
 			SuccessView.materialListView(inven.getMaterial(materialName));
@@ -86,6 +91,7 @@ public class Controller {
 		}
 	}
 
+	// 인벤토리에 아이템 수정
 	public static void materialUpdate(String materialName, Material material) {
 		if(materialName != null & material != null) {
 			try {
@@ -99,6 +105,7 @@ public class Controller {
 		}
 	}
 
+	// 인벤토리에 아이템 삭제
 	public static void materialDelete(String materialName) {
 		if(materialName != null) {
 			try {
@@ -129,6 +136,7 @@ public class Controller {
 		}
 	}
 
+	// 아이템 제작
 	public static void produce(String produceSkill) {
 		try {
 			inven.produce(produceSkill);
@@ -141,6 +149,7 @@ public class Controller {
 		}
 	}
 
+	// 스토리 선택
 	public static void choiceStory1(String m) {
 		if (m.equals("Y")) {
 			SuccessView.successMessage("전투를 개시합니다.");
@@ -153,6 +162,7 @@ public class Controller {
 		}
 	}
 
+	// 스토리 선택
 	public static void choiceStory2(String m) {
 		if (m.equals("Y")) {
 			SuccessView.successMessage("새로운 모험을 떠납니다.");
@@ -165,6 +175,7 @@ public class Controller {
 		}
 	}
 
+	// 엔딩
 	public static void lastStory(Unit unit) {
 		if (unit.getUHp() > 0) {
 			FailView.printFail("재련 실패로 무기를 얻지 못해 마왕이 시간내에 죽지 못하여 세상의 멸망과 함께 다같이 죽습니다.");
@@ -176,6 +187,7 @@ public class Controller {
 
 	}
 	
+	// 스토리 스킵 옵션
 	public static void storySkipOption(String m) {
 		Scanner sc = new Scanner(System.in);
 

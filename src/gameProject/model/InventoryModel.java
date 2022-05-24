@@ -72,6 +72,7 @@ public class InventoryModel {
 		throw new GameProjectException("삭제하려는 광물은 미존재합니다.");
 	}
 
+	// 제작
 	public void produce(String produceSkill) throws GameProjectException {
 		int randint = random.nextInt(9);
 		// 강화 확률 60퍼

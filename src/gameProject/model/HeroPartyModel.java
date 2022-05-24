@@ -29,37 +29,37 @@ public class HeroPartyModel {
 		heroParty.add(unit);
 	}
 
-	// 용사 파티의 유닛 검색(R) ////
-	public Unit gameUnitRead(String unitName) throws GameProjectException { ////
-		for (Unit unit : heroParty) { ////
-			if (unit.getUName().equals(unitName)) { ////
-				return unit; ////
-			} ////
-		} ////
-		throw new GameProjectException(unitName + "해당 이름은 존재하지 않습니다."); ////
-	} ////
+	// 용사 파티의 유닛 검색(R) 
+	public Unit gameUnitRead(String unitName) throws GameProjectException { 
+		for (Unit unit : heroParty) { 
+			if (unit.getUName().equals(unitName)) { 
+				return unit; 
+			} 
+		} 
+		throw new GameProjectException(unitName + "해당 이름은 존재하지 않습니다."); 
+	} 
 
-// 용사 파티의 유닛이름 수정(U)		////
-	public void gameUnitUpdate(String unitName, String newName) throws GameProjectException { ////
-		for (Unit unit : heroParty) { ////
-			if (unit.getUName().equals(unitName)) { ////
-				unit.setUName(newName); ////
-				return; ////
-			} ////
-		} ////
-		throw new GameProjectException(unitName + "변경하려는 해당 이름은 존재하지 않습니다."); ////
-	} ////
+	// 용사 파티의 유닛이름 수정(U)		
+	public void gameUnitUpdate(String unitName, String newName) throws GameProjectException { 
+		for (Unit unit : heroParty) { 
+			if (unit.getUName().equals(unitName)) { 
+				unit.setUName(newName); 
+				return; 
+			} 
+		} 
+		throw new GameProjectException(unitName + "변경하려는 해당 이름은 존재하지 않습니다."); 
+	} 
 
-// 용사 파티의 유닛 삭제(D)	////
-	public void gameUnitDelete(String unitName) throws GameProjectException { ////
-		for (Unit unit : heroParty) { ////
-			if (unit.getUName().equals(unitName)) { ////
-				heroParty.remove(unit); ////
-				return; ////
-			} ////
-		} ////
-		throw new GameProjectException(unitName + "삭제하려는 해당 이름은 존재하지 않습니다."); ////
-	} ////
+	// 용사 파티의 유닛 삭제(D)	
+	public void gameUnitDelete(String unitName) throws GameProjectException { 
+		for (Unit unit : heroParty) { 
+			if (unit.getUName().equals(unitName)) { 
+				heroParty.remove(unit); 
+				return; 
+			} 
+		} 
+		throw new GameProjectException(unitName + "삭제하려는 해당 이름은 존재하지 않습니다."); 
+	} 
 
 	// 유닛 공격
 	/*
@@ -71,6 +71,7 @@ public class HeroPartyModel {
 	 * method 내에서 진행 순서는 한번에 되는것이 아니라 순차적으로 진행함.(if문 여러개 제외) 아래 구문 진행 순서 제대로 파악하기.
 	 */
 
+	// 파티 내 유닛들로 공격
 	public void attack(Unit unit) throws GameProjectException {
 		int damagedHp = 0;
 		int cnt = 0;
