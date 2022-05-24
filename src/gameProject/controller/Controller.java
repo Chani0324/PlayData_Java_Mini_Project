@@ -15,6 +15,9 @@ public class Controller {
 	public static HeroPartyModel heroParty = HeroPartyModel.getInstance();
 	public static InventoryModel inven = InventoryModel.getInstance();
 
+	private static Scanner sc = new Scanner(System.in);
+	private static String m = null;
+
 	// 영웅 파티에 캐릭터 넣기
 	public static void gameUnitInsert(Unit unit) {
 		if (unit != null) {
@@ -65,9 +68,9 @@ public class Controller {
 //				e.printStackTrace();
 				FailView.printFail(e.getMessage());
 			}
-		}else {
+		} else {
 			FailView.printFail("\n...\n");
-			
+
 		}
 	}
 
@@ -76,7 +79,7 @@ public class Controller {
 		if (material != null) {
 			inven.gameItemInsert(material);
 			SuccessView.successMessage(material + " 인벤토리에 저장 완료.");
-		}else {
+		} else {
 			FailView.printFail("해당 재료 재확인 필요.");
 		}
 	}
@@ -85,7 +88,7 @@ public class Controller {
 	public static void getMaterial(String materialName) {
 		try {
 			SuccessView.materialListView(inven.getMaterial(materialName));
-		} catch(GameProjectException e) {
+		} catch (GameProjectException e) {
 //			e.printStackTrace();
 			FailView.printFail("해당 광물 재확인 필요.");
 		}
@@ -93,45 +96,45 @@ public class Controller {
 
 	// 인벤토리에 아이템 수정
 	public static void materialUpdate(String materialName, Material material) {
-		if(materialName != null & material != null) {
+		if (materialName != null & material != null) {
 			try {
 				inven.materialUpdate(materialName, material);
-			}catch(GameProjectException e) {
+			} catch (GameProjectException e) {
 //				e.printStackTrace();
 				FailView.printFail(e.getMessage());
 			}
-		}else {
+		} else {
 			FailView.printFail("수정하려는 광물을 재확인하세요.");
 		}
 	}
 
 	// 인벤토리에 아이템 삭제
 	public static void materialDelete(String materialName) {
-		if(materialName != null) {
+		if (materialName != null) {
 			try {
 				inven.materialDelete(materialName);
 				SuccessView.successMessage("해당 광물 삭제 완료");
-			}catch(GameProjectException e) {
+			} catch (GameProjectException e) {
 //				e.printStackTrace();
 				FailView.printFail(e.getMessage());
 			}
-		}else {
+		} else {
 			FailView.printFail("입력한 광물이 인벤토리에 있는지 재확인 해주세요.");
 		}
-		
+
 	}
 
 	// 용사파티의 공격유닛들로 공격
 	public static void attack(Unit unit) {
-		if(unit != null && unit.getUHp() > 0) {
+		if (unit != null && unit.getUHp() > 0) {
 			try {
 				heroParty.attack(unit);
 				SuccessView.successMessage("공격받은 " + unit.getUName() + "의 체력이" + unit.getUHp() + "이(가) 되었습니다.");
-			}catch(GameProjectException e) {
+			} catch (GameProjectException e) {
 //				e.printStackTrace();
-				FailView.printFail(e.getMessage()); 
+				FailView.printFail(e.getMessage());
 			}
-		}else {
+		} else {
 			FailView.printFail("이미 죽었거나 없는 몬스터입니다.");
 		}
 	}
@@ -142,36 +145,44 @@ public class Controller {
 			inven.produce(produceSkill);
 			SuccessView.successMessage("롱소드 재련에 성공하였습니다.");
 			SuccessView.successMessage("재련 성공으로 용사의 공격력이 증가합니다.");
-			
-		}catch(GameProjectException e) {
+
+		} catch (GameProjectException e) {
 //			e.printStackTrace();
 			FailView.printFail(e.getMessage());
 		}
 	}
 
 	// 스토리 선택
-	public static void choiceStory1(String m) {
-		if (m.equals("Y")) {
-			SuccessView.successMessage("전투를 개시합니다.");
-		}else if(m.equals("N")) {
-			FailView.printFail("대장장이는 모른체하고 살다가 마왕에게 세계정복을 당하면서 같이 죽어버렸습니다.");
-			System.exit(0);
-		}else {
-			System.out.println("Y / N 중에 입력하세요.");
-			System.exit(0);
+	public static void choiceStory1() {
+
+		while (true) {
+			m = sc.nextLine();
+			if (m.equals("Y")) {
+				SuccessView.successMessage("전투를 개시합니다.");
+				return;
+			} else if (m.equals("N")) {
+				FailView.printFail("대장장이는 모른체하고 살다가 마왕에게 세계정복을 당하면서 같이 죽어버렸습니다.");
+				System.exit(0);
+			} else {
+				System.out.println("Y / N 중에 입력하세요.");
+			}
 		}
 	}
 
 	// 스토리 선택
-	public static void choiceStory2(String m) {
-		if (m.equals("Y")) {
-			SuccessView.successMessage("새로운 모험을 떠납니다.");
-		}else if(m.equals("N")) {
-			FailView.printFail("대장장이는 모른체하고 살다가 마왕에게 세계정복을 당하면서 같이 죽어버렸습니다.");
-			System.exit(0);
-		}else {
-			System.out.println("Y / N 중에 입력하세요.");
-			System.exit(0);
+	public static void choiceStory2() {
+
+		while (true) {
+			m = sc.nextLine();
+			if (m.equals("Y")) {
+				SuccessView.successMessage("새로운 모험을 떠납니다.");
+				return;
+			} else if (m.equals("N")) {
+				FailView.printFail("대장장이는 모른체하고 살다가 마왕에게 세계정복을 당하면서 같이 죽어버렸습니다.");
+				System.exit(0);
+			} else {
+				System.out.println("Y / N 중에 입력하세요.");
+			}
 		}
 	}
 
@@ -180,29 +191,31 @@ public class Controller {
 		if (unit.getUHp() > 0) {
 			FailView.printFail("재련 실패로 무기를 얻지 못해 마왕이 시간내에 죽지 못하여 세상의 멸망과 함께 다같이 죽습니다.");
 			FailView.printFail("--Bad Ending--");
-		}else {
+		} else {
 			SuccessView.successMessage("용사일행은 세상을 구하고 평화를 지켜내었습니다.");
 			SuccessView.successMessage("--Good Ending--");
 		}
 
 	}
-	
-	// 스토리 스킵 옵션
-	public static void storySkipOption(String m) {
-		Scanner sc = new Scanner(System.in);
 
-		if (m.equals("N")) {
-			SuccessView.successMessage("\n검색하고자 하는 유닛의 이름을 입력하세요 : ");
-			gameUnitRead(sc.next());
-			SuccessView.successMessage("\n변경하고자 하는 유닛의 이름을 입력하고 엔터, 그후 새로운 이름을 입력하세요 : ");
-			gameUnitUpdate(sc.next(), sc.next());
-			SuccessView.successMessage("\n삭제하고자 하는 유닛의 이름을 입력하세요 : ");
-			gameUnitDelete(sc.next());
-		}else if(m.equals("Y")) {
-			SuccessView.successMessage("스토리를 진행합니다.");
-		}else {
-			System.out.println("Y / N 중에 입력하세요.");
-			System.exit(0);
+	// 스토리 스킵 옵션
+	public static void storySkipOption() {
+		while (true) {
+			m = sc.nextLine();
+			if (m.equals("N")) {
+				SuccessView.successMessage("\n검색하고자 하는 유닛의 이름을 입력하세요 : ");
+				gameUnitRead(sc.nextLine());
+				SuccessView.successMessage("\n변경하고자 하는 유닛의 이름을 입력하고 엔터, 그후 새로운 이름을 입력하세요 : ");
+				gameUnitUpdate(sc.nextLine(), sc.nextLine());
+				SuccessView.successMessage("\n삭제하고자 하는 유닛의 이름을 입력하세요 : ");
+				gameUnitDelete(sc.nextLine());
+				return;
+			} else if (m.equals("Y")) {
+				SuccessView.successMessage("스토리를 진행합니다.");
+				return;
+			} else {
+				System.out.println("Y / N 중에 입력하세요.");
+			}
 		}
 	}
 

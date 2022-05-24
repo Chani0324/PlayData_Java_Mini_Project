@@ -9,6 +9,7 @@ import gameProject.model.dto.Unit;
 
 public class StartView {
 	
+	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// 마을 NPC들 생성
@@ -30,10 +31,9 @@ public class StartView {
 		Controller.gameUnitInsert(hero2);
 		
 		// 캐릭터 CRUD
-		Scanner sc = new Scanner(System.in);
 		System.out.println("*********************************************");
 		System.out.println("유닛 변경사항을 확인하지 않고 스토리를 진행하시겠습니까? (Y / N)");
-		Controller.storySkipOption(sc.next());
+		Controller.storySkipOption();
 		
 		// 몬스터 늑대, 마왕 생성
 		// ("이름", hp, 이동속도, 방어력, 공격력)
@@ -43,8 +43,8 @@ public class StartView {
 		// 선택지1 생성. 늑대와의 전투
 		System.out.println("*********************************************");
 		System.out.println("용사는 숲속에서 광물을 캐다 소년을 쫓는 늑대를 발견하였습니다.");	
-		System.out.println("돕겠습니까? (Y/N)");	
-		Controller.choiceStory1(sc.next());
+		System.out.println("돕겠습니까? (Y / N)");	
+		Controller.choiceStory1();
 		
 		// 늑대와의 전투
 		Controller.attack(monster2);
@@ -90,7 +90,7 @@ public class StartView {
 		System.out.println("*********************************************");
 		System.out.println("용사는 마왕과 그에게 잡혀있는 마을촌장의 딸을 발견하였습니다.");	
 		System.out.println("돕겠습니까? (Y/N)");	
-		Controller.choiceStory2(sc.next());
+		Controller.choiceStory2();
 		
 		
 		// 용사파티 마왕 공격. 제한 시간 내 총 6번 공격 가능
