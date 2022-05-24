@@ -32,10 +32,50 @@ public class InventoryModel {
 		inven.add(material);
 	}
 
+	// 광물 이름으로 검색
+	public ArrayList<Material> getMaterial(String materialName) throws GameProjectException {
+		int cnt = 0;
+		ArrayList<Material> list = new ArrayList<Material>();
+
+		for (Material mt : inven) {
+			if (mt.getMatName().equals(materialName)) {
+				list.add(mt);
+				cnt++;
+			}
+		}
+		if (cnt == 0) {
+			throw new GameProjectException("해당 광물이 없습니다.");
+		}
+		return list;
+
+	}
+
+	// 광물이름 검색 후 수정
+	public void materialUpdate(String materialName, Material material) throws GameProjectException {
+		for (Material mt : inven) {
+			if (mt.getMatName().equals(materialName)) {
+				mt.setMatName(materialName);
+				return;
+			}
+		}
+		throw new GameProjectException("수정하려는 광물이 미존재합니다.");
+	}
+
+	// 해당 광물 삭제
+	public void materialDelete(String materialName) throws GameProjectException {
+		for (Material mt : inven) {
+			if (mt.getMatName().equals(materialName)) {
+				inven.remove(mt);
+				return;
+			}
+		}
+		throw new GameProjectException("삭제하려는 광물은 미존재합니다.");
+	}
+
 	public void produce(String produceSkill) throws GameProjectException {
 		int randint = random.nextInt(9);
-		// 강화 확률 80퍼
-		if (randint <= 7) {
+		// 강화 확률 60퍼
+		if (randint <= 5) {
 			for (Material mt : inven) {
 				if (mt.getMatName().equals("철광석") && mt.getMatState().equals("상") && produceSkill.equals("재련기술1")) {
 					mt = null;

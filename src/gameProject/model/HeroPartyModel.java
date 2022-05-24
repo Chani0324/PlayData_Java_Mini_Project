@@ -13,12 +13,13 @@ public class HeroPartyModel {
 	// 유닛을 array에 저장
 	private ArrayList<Unit> heroParty = new ArrayList<Unit>();
 
-	private HeroPartyModel() {}
+	private HeroPartyModel() {
+	}
 
 	public static HeroPartyModel getInstance() {
 		return instance;
 	}
-	
+
 	public ArrayList<Unit> getHeroParty() {
 		return heroParty;
 	}
@@ -27,6 +28,38 @@ public class HeroPartyModel {
 	public void gameUnitInsert(Unit unit) {
 		heroParty.add(unit);
 	}
+
+	// 용사 파티의 유닛 검색(R) ////
+	public Unit gameUnitRead(String unitName) throws GameProjectException { ////
+		for (Unit unit : heroParty) { ////
+			if (unit.getUName().equals(unitName)) { ////
+				return unit; ////
+			} ////
+		} ////
+		throw new GameProjectException(unitName + "해당 이름은 존재하지 않습니다."); ////
+	} ////
+
+// 용사 파티의 유닛이름 수정(U)		////
+	public void gameUnitUpdate(String unitName, String newName) throws GameProjectException { ////
+		for (Unit unit : heroParty) { ////
+			if (unit.getUName().equals(unitName)) { ////
+				unit.setUName(newName); ////
+				return; ////
+			} ////
+		} ////
+		throw new GameProjectException(unitName + "변경하려는 해당 이름은 존재하지 않습니다."); ////
+	} ////
+
+// 용사 파티의 유닛 삭제(D)	////
+	public void gameUnitDelete(String unitName) throws GameProjectException { ////
+		for (Unit unit : heroParty) { ////
+			if (unit.getUName().equals(unitName)) { ////
+				heroParty.remove(unit); ////
+				return; ////
+			} ////
+		} ////
+		throw new GameProjectException(unitName + "삭제하려는 해당 이름은 존재하지 않습니다."); ////
+	} ////
 
 	// 유닛 공격
 	/*
